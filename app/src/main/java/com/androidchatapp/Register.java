@@ -72,15 +72,18 @@ public class Register extends AppCompatActivity {
                                 pd.setMessage("Loading...");
                                 pd.show();
 
-                                String url = "https://androidchatapp-76776.firebaseio.com/users.json";
+                                //String url = "https://androidchatapp-76776.firebaseio.com/users.json";
+                                String url="https://androidchatapp-f936f.firebaseio.com/users.json";
 
                                 StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                                     @Override
                                     public void onResponse(String s) {
-                                        Firebase reference = new Firebase("https://androidchatapp-76776.firebaseio.com/users");
+                                        //Firebase reference = new Firebase("https://androidchatapp-76776.firebaseio.com/users");
+                                        Firebase reference = new Firebase("https://androidchatapp-f936f.firebaseio.com/users");
 
                                         if(s.equals("null")) {
                                             reference.child(user).child("password").setValue(pass);
+
                                             Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
                                         }
                                         else {
@@ -89,6 +92,7 @@ public class Register extends AppCompatActivity {
 
                                                 if (!obj.has(user)) {
                                                     reference.child(user).child("password").setValue(pass);
+                                                    reference.child(user).child("accounttype").setValue(0); //all non-admins are type 0
                                                     Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
                                                 } else {
                                                     Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();

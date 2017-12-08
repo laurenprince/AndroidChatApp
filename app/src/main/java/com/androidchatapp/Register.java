@@ -93,6 +93,7 @@ public class Register extends AppCompatActivity {
                                                 if (!obj.has(user)) {
                                                     reference.child(user).child("password").setValue(pass);
                                                     reference.child(user).child("accounttype").setValue(0); //all non-admins are type 0
+                                                    reference.child(user).child("messages").setValue(true);
                                                     Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
                                                 } else {
                                                     Toast.makeText(Register.this, "username already exists", Toast.LENGTH_LONG).show();

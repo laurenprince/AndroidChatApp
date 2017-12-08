@@ -20,6 +20,14 @@
         <activity android:name=".Register" />
         <activity android:name=".Users" />
         <activity android:name=".Chat" />
+        <activity
+        android:name=".AdminPage"
+        android:exported="true"
+        android:label="@string/title_activity_admin_page"
+        android:theme="@style/AppTheme.NoActionBar" />
+
+
+
     </application>
 
 </manifest>

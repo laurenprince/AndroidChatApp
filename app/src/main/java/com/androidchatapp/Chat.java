@@ -1,12 +1,15 @@
 package com.androidchatapp;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +25,8 @@ import com.firebase.client.FirebaseError;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.view.View.TEXT_ALIGNMENT_TEXT_START;
+
 
 public class Chat extends AppCompatActivity {
     LinearLayout layout;
@@ -30,9 +35,11 @@ public class Chat extends AppCompatActivity {
     EditText messageArea;
     ScrollView scrollView;
     Firebase reference1, reference2;
+    private static final String TAG = "MainActivity";
     int count = 0;
     long sclock;
     long fclock;
+    long tmp = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,14 +67,11 @@ public class Chat extends AppCompatActivity {
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
                     messageArea.setText("");
-                    sclock+= System.currentTimeMillis();
                     count++;
 
                 }
-                    //fclock = System.currentTimeMillis() - sclock;
-                    long endtime = sclock * 1000;
-                    //System.out.printf("%lf",endtime);
-                if(endtime > 5){
+
+                if(count > 3){
                     reference1.removeValue();
                     reference2.removeValue();
                     //setContentView(R.layout.activity_chat);
@@ -91,6 +95,7 @@ public class Chat extends AppCompatActivity {
                 }
                 else{
                     addMessageBox(UserDetails.chatWith + ":-\n" + message, 2);
+
                 }
             }
 
@@ -116,26 +121,30 @@ public class Chat extends AppCompatActivity {
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void addMessageBox(String message, int type) {
-        TextView textView = new TextView(Chat.this);
-        textView.setText(message);
+        Button clickTextView = new Button(Chat.this);
+        clickTextView.setText(message);
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp2.weight = 1.0f;
 
         if (type == 1) {
             lp2.gravity = Gravity.RIGHT;
-            textView.setBackgroundResource(R.drawable.rounded_rectangle_one);
-            textView.setPadding(50,50,100,50);
+            clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_one);
+            clickTextView.setPadding(50,50,50,50);
+            clickTextView.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
 
 
 
         } else {
             lp2.gravity = Gravity.LEFT;
-            textView.setBackgroundResource(R.drawable.bubble_out);
+            clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_two);
+            clickTextView.setPadding(50,50,50,50);
+            clickTextView.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
         }
-        textView.setLayoutParams(lp2);
-        layout.addView(textView);
+        clickTextView.setLayoutParams(lp2);
+        layout.addView(clickTextView);
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
 }

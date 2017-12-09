@@ -134,6 +134,7 @@ public class Chat extends AppCompatActivity {
             clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_one);
             clickTextView.setPadding(50,50,50,50);
             clickTextView.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
+            clickTextView.setMaxWidth(600);
 
 
 
@@ -142,6 +143,7 @@ public class Chat extends AppCompatActivity {
             clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_two);
             clickTextView.setPadding(50,50,50,50);
             clickTextView.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
+            clickTextView.setMaxWidth(600);
         }
         clickTextView.setLayoutParams(lp2);
         layout.addView(clickTextView);

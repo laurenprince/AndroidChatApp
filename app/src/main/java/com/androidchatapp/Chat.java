@@ -3,6 +3,7 @@ package com.androidchatapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class Chat extends AppCompatActivity {
     ScrollView scrollView;
     Firebase reference1, reference2;
     int count = 0;
+    long sclock;
+    long fclock;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +60,14 @@ public class Chat extends AppCompatActivity {
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
                     messageArea.setText("");
+                    sclock+= System.currentTimeMillis();
                     count++;
 
                 }
-
-                if(count > 5){
+                    //fclock = System.currentTimeMillis() - sclock;
+                    long endtime = sclock * 1000;
+                    //System.out.printf("%lf",endtime);
+                if(endtime > 5){
                     reference1.removeValue();
                     reference2.removeValue();
                     //setContentView(R.layout.activity_chat);
@@ -119,7 +125,11 @@ public class Chat extends AppCompatActivity {
 
         if (type == 1) {
             lp2.gravity = Gravity.RIGHT;
-            textView.setBackgroundResource(R.drawable.bubble_in);
+            textView.setBackgroundResource(R.drawable.rounded_rectangle_one);
+            textView.setPadding(50,50,100,50);
+
+
+
         } else {
             lp2.gravity = Gravity.LEFT;
             textView.setBackgroundResource(R.drawable.bubble_out);

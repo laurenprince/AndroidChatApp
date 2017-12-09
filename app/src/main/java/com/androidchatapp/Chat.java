@@ -1,7 +1,6 @@
 package com.androidchatapp;
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -123,7 +121,8 @@ public class Chat extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void addMessageBox(String message, int type) {
-        Button clickTextView = new Button(Chat.this);
+
+        final Button clickTextView = new Button(Chat.this);
         clickTextView.setText(message);
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -138,15 +137,28 @@ public class Chat extends AppCompatActivity {
 
 
 
+
         } else {
             lp2.gravity = Gravity.LEFT;
             clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_two);
             clickTextView.setPadding(50,50,50,50);
             clickTextView.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
             clickTextView.setMaxWidth(600);
+            String rmsg = clickTextView.getText().toString();
+            Log.d(TAG,rmsg);
+            if(rmsg.contains("U:")){
+            clickTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickTextView.setText("HELLO");
+                }
+            });
+            }
         }
+
         clickTextView.setLayoutParams(lp2);
         layout.addView(clickTextView);
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
+
 }

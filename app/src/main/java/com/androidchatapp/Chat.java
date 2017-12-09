@@ -1,5 +1,6 @@
 package com.androidchatapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -33,12 +34,12 @@ public class Chat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        //final Intent starterIntent = getIntent();
         layout = (LinearLayout) findViewById(R.id.layout1);
-        layout_2 = (RelativeLayout)findViewById(R.id.layout2);
-        sendButton = (ImageView)findViewById(R.id.sendButton);
-        messageArea = (EditText)findViewById(R.id.messageArea);
-        scrollView = (ScrollView)findViewById(R.id.scrollView);
+        layout_2 = (RelativeLayout) findViewById(R.id.layout2);
+        sendButton = (ImageView) findViewById(R.id.sendButton);
+        messageArea = (EditText) findViewById(R.id.messageArea);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
 
         Firebase.setAndroidContext(this);
         //androidchatapp-76776
@@ -57,11 +58,16 @@ public class Chat extends AppCompatActivity {
                     reference2.push().setValue(map);
                     messageArea.setText("");
                     count++;
+
                 }
 
                 if(count > 5){
                     reference1.removeValue();
                     reference2.removeValue();
+                    //setContentView(R.layout.activity_chat);
+                   // finish();
+                    //startActivity(starterIntent);
+                    recreate();
                 }
 
             }

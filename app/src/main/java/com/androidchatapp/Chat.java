@@ -2,6 +2,7 @@ package com.androidchatapp;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.os.*;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -22,6 +24,10 @@ import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.text.*;
+
 
 import static android.view.View.TEXT_ALIGNMENT_TEXT_START;
 
@@ -35,6 +41,7 @@ public class Chat extends AppCompatActivity {
     Firebase reference1, reference2;
     private static final String TAG = "MainActivity";
     int count = 0;
+    int timeout = 0;
     long sclock;
     long fclock;
     long tmp = 0;
@@ -65,18 +72,47 @@ public class Chat extends AppCompatActivity {
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
                     messageArea.setText("");
-                    count++;
-
+                    //count++;
                 }
 
-                if(count > 3){
+                //NEW - LP : Trying to delete after certain milliseconds
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        timeout = 1;
+                    }
+                }, 5000);
+
+                if(timeout == 1) {
+                    reference1.removeValue();
+                    reference2.removeValue();
+                    recreate();
+                }
+                // end NEW - LP
+
+
+                //NEW - LP : Possible 1 day delete, needs to be tested after 1 day...
+                /*long cutoff = new Date().getTime()-TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS);
+
+                //Get days number for delete data
+                Date d = new Date(cutoff );
+                SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd");
+                String old_date = dateFormatGmt.format(new Date(cutoff));
+
+                // Get date of deleting content
+                reference1.child(old_date).removeValue();    //Remove element
+                reference2.child(old_date).removeValue();    //Remove element //end NEW - LP
+                */
+
+                //Old message counter delete
+                /*if(count > 3){
                     reference1.removeValue();
                     reference2.removeValue();
                     //setContentView(R.layout.activity_chat);
                    // finish();
                     //startActivity(starterIntent);
                     recreate();
-                }
+                }*/
 
             }
         });

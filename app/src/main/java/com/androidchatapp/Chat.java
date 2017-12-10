@@ -55,8 +55,8 @@ public class Chat extends AppCompatActivity {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         Firebase.setAndroidContext(this);
         //androidchatapp-76776
-        reference1 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
-        reference2 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
+        reference1 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threads/" + UserDetails.username + "_" + UserDetails.chatWith);
+        reference2 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threads/" + UserDetails.chatWith + "_" + UserDetails.username);
        // scrollView.scrollTo(0,scrollView.getBottom());
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,8 +236,8 @@ public class Chat extends AppCompatActivity {
                             public void onFinish() {
                                 Firebase reference5 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + keynew);
                                 reference5.removeValue();
-                                Firebase reference6 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
-                                Firebase reference7 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
+                                Firebase reference6 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threads/" + UserDetails.username + "_" + UserDetails.chatWith);
+                                Firebase reference7 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threads/" + UserDetails.chatWith + "_" + UserDetails.username);
                                 String messageK = dateK;
                                 reference2.child(dateK+" SENT").child("message").setValue("R: "+dateK);
                                 reference1.child(dateK+" RECEIVED").child("message").setValue("R: "+dateK);

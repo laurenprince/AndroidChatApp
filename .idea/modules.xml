@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidChatApp.iml" filepath="$PROJECT_DIR$/AndroidChatApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AndroidChatApp.iml" filepath="$PROJECT_DIR$/.idea/AndroidChatApp.iml" />
+      <module fileurl="file://C:\Users\David\Documents\cs3773 software engineering\SafeSendv2\AndroidChatApp\AndroidChatApp.iml" filepath="C:\Users\David\Documents\cs3773 software engineering\SafeSendv2\AndroidChatApp\AndroidChatApp.iml" />
       <module fileurl="file://C:\Users\neoni\AndroidStudioProjects\AndroidChatApp\AndroidChatApp.iml" filepath="C:\Users\neoni\AndroidStudioProjects\AndroidChatApp\AndroidChatApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\David\Documents\cs3773 software engineering\SafeSendv2\AndroidChatApp\app\app.iml" filepath="C:\Users\David\Documents\cs3773 software engineering\SafeSendv2\AndroidChatApp\app\app.iml" />
       <module fileurl="file://C:\Users\neoni\AndroidStudioProjects\AndroidChatApp\app\app.iml" filepath="C:\Users\neoni\AndroidStudioProjects\AndroidChatApp\app\app.iml" />
     </modules>
   </component>

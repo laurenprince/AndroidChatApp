@@ -106,7 +106,7 @@ public class AdminPage extends AppCompatActivity {
                         if (!obj.has(userName)) {
                             reference.child(userName).child("password").setValue(userPass);
                             reference.child(userName).child("accounttype").setValue(0); //all non-admins are type 0
-                            reference.child(userName).child("messages").setValue(true);
+                            reference.child(userName).child("chatpassword").setValue("");
                             Toast.makeText(AdminPage.this, "registration successful", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(AdminPage.this, "username already exists", Toast.LENGTH_LONG).show();

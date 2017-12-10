@@ -37,7 +37,7 @@ public class Chat extends AppCompatActivity {
     ImageView sendButton;
     EditText messageArea;
     ScrollView scrollView;
-    Firebase reference1, reference2, reference3, reference4;
+    Firebase reference1, reference2, reference3, reference4, ref1, ref2;
     private static final String TAG = "MainActivity";
     int count = 0;
     long sclock;
@@ -55,12 +55,17 @@ public class Chat extends AppCompatActivity {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         Firebase.setAndroidContext(this);
         //androidchatapp-76776
+
         reference1 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threads/" + UserDetails.username + "_" + UserDetails.chatWith);
         reference2 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threads/" + UserDetails.chatWith + "_" + UserDetails.username);
+        //ref1=new Firebase("https://androidchatapp-f936f.firebaseio.com/threadpws/" + UserDetails.username + "_" + UserDetails.chatWith);
+        //ref2 = new Firebase("https://androidchatapp-f936f.firebaseio.com/threadpws/" + UserDetails.chatWith + "_" + UserDetails.username);
+
        // scrollView.scrollTo(0,scrollView.getBottom());
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String messageText = messageArea.getText().toString();
                 if(!messageText.equals("")){
                     Date date = new Date();
@@ -98,6 +103,8 @@ public class Chat extends AppCompatActivity {
 
                     messageArea.setText("");
                     count++;
+
+
                     //scrollView.scrollTo(0,140);
                 }
 
@@ -241,6 +248,9 @@ public class Chat extends AppCompatActivity {
                                 String messageK = dateK;
                                 reference2.child(dateK+" SENT").child("message").setValue("R: "+dateK);
                                 reference1.child(dateK+" RECEIVED").child("message").setValue("R: "+dateK);
+
+
+
                                 clickTextView.setText(UserDetails.chatWith + ":-\n" +"R: "+dateK);
                                 clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_grey);
                                 Log.d(TAG, "CHYASS: "+messageK);

@@ -20,13 +20,11 @@
         <activity android:name=".Users" />
         <activity android:name=".Chat" />
         <activity
-        android:name=".AdminPage"
-        android:exported="true"
-        android:label="@string/title_activity_admin_page"
-        android:theme="@style/AppTheme.NoActionBar" />
-
-
-
+            android:name=".AdminPage"
+            android:exported="true"
+            android:label="@string/title_activity_admin_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UserSettings"></activity>
     </application>
 
 </manifest>

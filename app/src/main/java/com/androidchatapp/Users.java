@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.firebase.client.Firebase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,12 +32,12 @@ public class Users extends AppCompatActivity {
     ArrayList<String> al = new ArrayList<>();
     int totalUsers = 0;
     ProgressDialog pd;
-
+    Firebase ref1,ref2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
-
+        Firebase.setAndroidContext(this);
         usersList = (ListView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
         settings = (FloatingActionButton)findViewById(R.id.settings);
@@ -44,7 +45,12 @@ public class Users extends AppCompatActivity {
         pd = new ProgressDialog(Users.this);
         pd.setMessage("Loading...");
         pd.show();
-
+        settings.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v){
+               Intent intent=new Intent(Users.this,UserSettings.class);
+               startActivity(intent);
+           }
+        });
         String url = "https://androidchatapp-f936f.firebaseio.com/users.json";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
@@ -66,6 +72,9 @@ public class Users extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 UserDetails.chatWith = al.get(position);
+
+
+
                 startActivity(new Intent(Users.this, Chat.class));
             }
         });

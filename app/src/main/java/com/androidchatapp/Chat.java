@@ -1,7 +1,6 @@
 package com.androidchatapp;
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -16,13 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,12 +53,11 @@ public class Chat extends AppCompatActivity {
         sendButton = (ImageView) findViewById(R.id.sendButton);
         messageArea = (EditText) findViewById(R.id.messageArea);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
-
         Firebase.setAndroidContext(this);
         //androidchatapp-76776
         reference1 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
         reference2 = new Firebase("https://androidchatapp-f936f.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
-
+       // scrollView.scrollTo(0,scrollView.getBottom());
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +98,7 @@ public class Chat extends AppCompatActivity {
 
                     messageArea.setText("");
                     count++;
-
+                    //scrollView.scrollTo(0,140);
                 }
 
                 /*if(count > 3){
@@ -120,6 +116,7 @@ public class Chat extends AppCompatActivity {
         reference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                 Map map = dataSnapshot.getValue(Map.class);
                 String message = map.get("message").toString();
                 String userName = map.get("user").toString();
@@ -185,7 +182,10 @@ public class Chat extends AppCompatActivity {
             clickTextView.setMaxWidth(600);
             String rmsg = clickTextView.getText().toString();
             Log.d(TAG,rmsg);
-            if(rmsg.contains("U:")){
+            if(rmsg.contains("R:")){
+                clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_grey);
+            }
+            else if(rmsg.contains("U:")){
                 clickTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -242,7 +242,7 @@ public class Chat extends AppCompatActivity {
                                 reference2.child(dateK+" SENT").child("message").setValue("R: "+dateK);
                                 reference1.child(dateK+" RECEIVED").child("message").setValue("R: "+dateK);
                                 clickTextView.setText(UserDetails.chatWith + ":-\n" +"R: "+dateK);
-
+                                clickTextView.setBackgroundResource(R.drawable.rounded_rectangle_grey);
                                 Log.d(TAG, "CHYASS: "+messageK);
                                 //reference1.childsetValue("READ");
 

@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icn_launcher"
         android:label="SafeSend"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,7 +22,7 @@
         <activity
             android:name=".AdminPage"
             android:exported="true"
-            android:label="@string/title_activity_admin_page"
+            android:label="Admin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserSettings"></activity>
     </application>

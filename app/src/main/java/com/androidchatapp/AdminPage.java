@@ -1,6 +1,8 @@
 package com.androidchatapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -51,11 +53,19 @@ public class AdminPage extends AppCompatActivity {
                 TextView pass = (TextView) findViewById(R.id.textView5);
                 pass.setText(genCreds());
                 userReg(user, pass);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                 //       .setAction("Action", null).show();
             }
         });
+        Button chat = (Button)findViewById(R.id.chat);
+        chat.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminPage.this, Users.class);
+                startActivity(intent);
 
+            }
+        });
     }
 
     public String genCreds() {

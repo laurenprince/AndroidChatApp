@@ -69,7 +69,7 @@ public class Chat extends AppCompatActivity {
                 String messageText = messageArea.getText().toString();
                 if(!messageText.equals("")){
                     Date date = new Date();
-                    DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss");
+                    DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
                     Map<String, String> map = new HashMap<String, String>();
                     String strDate = dateFormat.format(date);
 

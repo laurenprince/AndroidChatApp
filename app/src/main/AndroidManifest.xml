@@ -25,6 +25,7 @@
             android:label="Admin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserSettings"></activity>
+        <activity android:name=".AboutDetails" />
     </application>
 
 </manifest>

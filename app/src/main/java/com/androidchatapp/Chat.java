@@ -314,6 +314,11 @@ public class Chat extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_about) {
+            about();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -321,5 +326,10 @@ public class Chat extends AppCompatActivity {
         Intent startMain = new Intent(Chat.this, Login.class);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
+    }
+
+    private void about() {
+        Intent startAbout = new Intent(Chat.this, AboutDetails.class);
+        startActivity(startAbout);
     }
 }

@@ -140,6 +140,11 @@ public class Users extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_about) {
+            about();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -147,6 +152,11 @@ public class Users extends AppCompatActivity {
         Intent startMain = new Intent(Users.this, Login.class);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
+    }
+
+    private void about() {
+        Intent startAbout = new Intent(Users.this, AboutDetails.class);
+        startActivity(startAbout);
     }
 
 }

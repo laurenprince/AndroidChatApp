@@ -294,4 +294,10 @@ public class Chat extends AppCompatActivity {
         return saltStr;
     }
 
+    @Override
+    public void onBackPressed() {
+        // empty so nothing happens
+        Intent intent = new Intent(Chat.this, Users.class);
+        startActivity(intent);
+    }
 }

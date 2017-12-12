@@ -159,4 +159,8 @@ public class Users extends AppCompatActivity {
         startActivity(startAbout);
     }
 
+    @Override
+    public void onBackPressed() {
+// empty so nothing happens
+    }
 }

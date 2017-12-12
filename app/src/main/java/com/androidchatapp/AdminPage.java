@@ -182,5 +182,10 @@ public class AdminPage extends AppCompatActivity {
         Intent startAbout = new Intent(AdminPage.this, AboutDetails.class);
         startActivity(startAbout);
     }
+
+    @Override
+    public void onBackPressed() {
+// empty so nothing happens
+    }
 }
 

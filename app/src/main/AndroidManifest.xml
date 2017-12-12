@@ -26,6 +26,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserSettings"></activity>
         <activity android:name=".AboutDetails" />
+        <activity android:name=".popUpPass"
+            android:theme="@style/AppTheme.CustomTheme">
+
+        </activity>
     </application>
 
 </manifest>
